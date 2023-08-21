@@ -1,0 +1,777 @@
+{
+	"info": {
+		"_postman_id": "d1cf4a24-7d6d-427a-b298-bdd6b86b9cde",
+		"name": "Maximo Manage",
+		"description": "Use this collection to work with Assets, Work Orders, Service Request etc.  \nThe collection is tested with MAS v8.10",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2001553"
+	},
+	"item": [
+		{
+			"name": "Asset",
+			"item": [
+				{
+					"name": "Get Assets",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapiasset?lean=1&oslc.select=assetid,assetnum,description,siteid&oslc.pageSize=10",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapiasset"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "1"
+								},
+								{
+									"key": "oslc.select",
+									"value": "assetid,assetnum,description,siteid"
+								},
+								{
+									"key": "oslc.pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Asset By ID",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapiasset/9?lean=1",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapiasset",
+								"9"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Asset",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assetnum\": \"API001\",\n    \"assetid\": 1001,\n    \"description\": \"Testing asset create using the API.\",\n    \"changeby\": \"MXINTADM\",\n    \"moved\": false,\n    \"siteid\": \"SITE1\",\n    \"changedate\": \"2023-08-18T17:42:57+00:00\",\n    \"orgid\": \"ACME\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapiasset?lean=1",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapiasset"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Asset",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "patchtype",
+								"value": "MERGE",
+								"type": "text"
+							},
+							{
+								"key": "x-method-override",
+								"value": "PATCH",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"First Asset updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapiasset/2?lean=1",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapiasset",
+								"2"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Work Order",
+			"item": [
+				{
+					"name": "Get Work Orders",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapiwo?lean=0&oslc.select=workorderid,wonum,description,status,assetnum,siteid,orgid&oslc.pageSize=30",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapiwo"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "0"
+								},
+								{
+									"key": "oslc.select",
+									"value": "workorderid,wonum,description,status,assetnum,siteid,orgid"
+								},
+								{
+									"key": "oslc.pageSize",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Work Order By ID",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapiwo/34?lean=0",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapiwo",
+								"34"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Work Order",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Uninstall the API asset.\",\n    \"assetnum\": \"ASST1\",\n    \"changeby\": \"MXINTADM\",\n    \"changedate\": \"2023-08-20T15:46:55+00:00\",\n    \"siteid\": \"SITE1\",\n    \"orgid\": \"ACME\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapiwo?lean=1",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapiwo"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Work Order",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-method-override",
+								"value": "PATCH",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"spi:description\": \"Uninstall the API asset\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapiwo/34?lean=0",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapiwo",
+								"34"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Meta",
+			"item": [
+				{
+					"name": "Get API Meta",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.5",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{maximo_url}}/oslc/oas?includeaction=1",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"oslc",
+								"oas"
+							],
+							"query": [
+								{
+									"key": "oslc.properties",
+									"value": "REPLACE_THIS_VALUE",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "1010",
+									"disabled": true
+								},
+								{
+									"key": "includeaction",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service Request",
+			"item": [
+				{
+					"name": "Get Service Requests",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapisr?lean=0&oslc.select=ticketuid,ticketid,description,status,siteid&oslc.pageSize=10",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapisr"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "0"
+								},
+								{
+									"key": "oslc.select",
+									"value": "ticketuid,ticketid,description,status,siteid"
+								},
+								{
+									"key": "oslc.pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Service Requests By ID",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapisr/3?lean=0",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapisr",
+								"3"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Service Request",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"SR from API2\",\n    \"description_longdescription\": \"Long descroption for API2 ticket 100x.<!-- RICH TEXT -->\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapisr?lean=1",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapisr"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Service Request",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-method-override",
+								"value": "PATCH",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"SR from API2 UPDATED\",\n    \"description_longdescription\": \"Long descroption for API2 ticket UPDATED.<!-- RICH TEXT -->\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapisr/3?lean=1",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapisr",
+								"3"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Service Request",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-method-override",
+								"value": "PATCH",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapisr/4?lean=1",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapisr",
+								"4"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

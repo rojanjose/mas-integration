@@ -343,7 +343,13 @@
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "properties",
+								"value": "*",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"description\": \"Uninstall the API asset.\",\n    \"assetnum\": \"ASST1\",\n    \"changeby\": \"MXINTADM\",\n    \"changedate\": \"2023-08-20T15:46:55+00:00\",\n    \"siteid\": \"SITE1\",\n    \"orgid\": \"ACME\"\n}",
@@ -399,6 +405,11 @@
 							{
 								"key": "x-method-override",
 								"value": "PATCH",
+								"type": "text"
+							},
+							{
+								"key": "properties",
+								"value": "*",
 								"type": "text"
 							}
 						],
@@ -509,6 +520,80 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get API Meta Copy",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.5",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxassetspec?lean=1",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxassetspec"
+							],
+							"query": [
+								{
+									"key": "oslc.properties",
+									"value": "REPLACE_THIS_VALUE",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "1010",
+									"disabled": true
+								},
+								{
+									"key": "lean",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -611,6 +696,50 @@
 					"response": []
 				},
 				{
+					"name": "Get Service Requests Doclinks",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{maximo_api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apikey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maximo_url}}/api/os/mxapisr/3?lean=0",
+							"host": [
+								"{{maximo_url}}"
+							],
+							"path": [
+								"api",
+								"os",
+								"mxapisr",
+								"3"
+							],
+							"query": [
+								{
+									"key": "lean",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Service Request",
 					"protocolProfileBehavior": {
 						"strictSSL": false
@@ -632,10 +761,16 @@
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "properties",
+								"value": "*",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"description\": \"SR from API2\",\n    \"description_longdescription\": \"Long descroption for API2 ticket 100x.<!-- RICH TEXT -->\"\n}",
+							"raw": "{\n    \"description\": \"SR from API6\",\n    \"description_longdescription\": \"Long descroption for API6 ticket 100x.<!-- RICH TEXT -->\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -688,6 +823,11 @@
 							{
 								"key": "x-method-override",
 								"value": "PATCH",
+								"type": "text"
+							},
+							{
+								"key": "properties",
+								"value": "*",
 								"type": "text"
 							}
 						],
